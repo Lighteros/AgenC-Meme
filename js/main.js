@@ -1,17 +1,18 @@
 /* AgenC — Super Intelligent Beauty
    PLAYBOOK B (dark cinematic) + E (immersive WebGL/Lenis) + D (narrative timeline).
    Hero = official 2D portrait as a lit, textured plane in Three.js (no invented face mesh).
-   X is live: https://x.com/AgenCBeauty. CA still TBA — Buy / Chart / Explorer stay "Soon" placeholders. No Telegram. */
+   X is live: https://x.com/AgenCBeauty. CA LIVE on Robinhood Chain. No Telegram. */
 import * as THREE from './vendor/three.module.min.js';
 
-// Fill these ONLY with the officially announced values. Until then everything stays "Soon".
-const CA = ''; // Robinhood Chain token address — TBA
+// Official CA + RH pair (DexScreener). Chart uses pair URL like sister RH sites (e.g. BTC).
+const CA = '0x9d70fb5ff955700ba00e862b629b9b4716860441';
+const PAIR = '0xeed3596f42660b34e3ccb6cdde3af71b8b458599c13503f197ae3ffb6f758bf8';
 const X_URL = 'https://x.com/AgenCBeauty';
-const LINKS = CA ? {
+const LINKS = {
   Buy: `https://app.uniswap.org/swap?outputCurrency=${CA}&chain=robinhood`,
-  Chart: `https://dexscreener.com/robinhood/${CA}`,
+  Chart: `https://dexscreener.com/robinhood/${PAIR}`,
   Explorer: `https://robinhoodchain.blockscout.com/token/${CA}`,
-} : {};
+};
 
 document.documentElement.classList.add('js');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -24,9 +25,9 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const toastEl = $('#toast'); let toastT;
 const toast = (m) => { toastEl.textContent = m; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), 2400); };
 const SOON_MSG = {
-  Buy: 'Buy on Uniswap · Robinhood Chain — soon · CA TBA',
-  Chart: 'DexScreener chart — soon · CA TBA',
-  Explorer: 'Blockscout explorer — soon · CA TBA',
+  Buy: 'Buy on Uniswap · Robinhood Chain',
+  Chart: 'DexScreener chart',
+  Explorer: 'Blockscout explorer',
   X: 'Official X — @AgenCBeauty',
 };
 $$('[data-soon]').forEach((el) => {
@@ -42,6 +43,31 @@ $$('[data-soon]').forEach((el) => {
   el.addEventListener('click', go);
   el.addEventListener('keydown', (e) => { if (!el.matches('button') && (e.key === 'Enter' || e.key === ' ')) go(e); });
 });
+
+/* ───────── paint CA + click-to-copy on existing CA surfaces ───────── */
+if (CA) {
+  $$('.ca-v, .ca-big').forEach((el) => { el.textContent = CA; });
+  $$('.spec dd').forEach((el) => {
+    const dt = el.previousElementSibling;
+    if (dt && /\bCA\b/i.test(dt.textContent || '')) el.textContent = CA;
+  });
+  $$('.fine').forEach((el) => { el.innerHTML = el.innerHTML.replace(/CA:\s*TBA/g, `CA: ${CA}`); });
+  const copyCA = async () => {
+    try { await navigator.clipboard.writeText(CA); toast('CA copied'); }
+    catch (_) {
+      const t = document.createElement('textarea'); t.value = CA; t.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(t); t.select(); try { document.execCommand('copy'); toast('CA copied'); } catch (e) {} t.remove();
+    }
+  };
+  $$('.ca-pill, .ca-block').forEach((el) => {
+    el.style.cursor = 'pointer';
+    el.title = 'Click to copy CA';
+    el.setAttribute('role', 'button');
+    el.tabIndex = 0;
+    el.addEventListener('click', (e) => { if (e.target.closest('a,button')) return; copyCA(); });
+    el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyCA(); } });
+  });
+}
 
 /* ───────── nav, clock ───────── */
 const nav = $('#nav');
