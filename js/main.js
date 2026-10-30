@@ -1,12 +1,12 @@
 /* AgenC — Super Intelligent Beauty
    PLAYBOOK B (dark cinematic) + E (immersive WebGL/Lenis) + D (narrative timeline).
    Hero = official 2D portrait as a lit, textured plane in Three.js (no invented face mesh).
-   CA / X: TBA — every Buy / Chart / Explorer / X control is a "Soon" placeholder. No Telegram. */
+   X is live: https://x.com/AgenCBeauty. CA still TBA — Buy / Chart / Explorer stay "Soon" placeholders. No Telegram. */
 import * as THREE from './vendor/three.module.min.js';
 
 // Fill these ONLY with the officially announced values. Until then everything stays "Soon".
 const CA = ''; // Robinhood Chain token address — TBA
-const X_URL = ''; // official X — TBA
+const X_URL = 'https://x.com/AgenCBeauty';
 const LINKS = CA ? {
   Buy: `https://app.uniswap.org/swap?outputCurrency=${CA}&chain=robinhood`,
   Chart: `https://dexscreener.com/robinhood/${CA}`,
@@ -27,7 +27,7 @@ const SOON_MSG = {
   Buy: 'Buy on Uniswap · Robinhood Chain — soon · CA TBA',
   Chart: 'DexScreener chart — soon · CA TBA',
   Explorer: 'Blockscout explorer — soon · CA TBA',
-  X: 'Official X — soon',
+  X: 'Official X — @AgenCBeauty',
 };
 $$('[data-soon]').forEach((el) => {
   const kind = el.dataset.soon;

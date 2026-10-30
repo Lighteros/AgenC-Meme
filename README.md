@@ -9,6 +9,6 @@ Static site (HTML/CSS/JS, no build) for the $AgenC meme on **Robinhood Chain**.
 - Banner: 3:1 key art (dark bob, matching the logo) `img/agenc-banner-3x1.*`; `og.jpg` = banner on a blurred 1200×630 background.
 - CSP in `vercel.json` allows only platform.twitter.com / syndication / twimg hosts needed by the embeds.
 - Meme vault: pending (memes not yet delivered).
-- **CA: TBA · X: Soon · Telegram: none.** Buy (Uniswap `chain=robinhood`), Chart (DexScreener robinhood) and Explorer (Blockscout) are "Soon" placeholders. Fill `CA` / `X_URL` in `js/main.js` only with officially announced values.
+- **CA: TBA · X: https://x.com/AgenCBeauty · Telegram: none.** Buy (Uniswap `chain=robinhood`), Chart (DexScreener robinhood) and Explorer (Blockscout) are "Soon" placeholders. Fill `CA` in `js/main.js` only with officially announced values.
 
 Fan meme / parody on Robinhood Chain. Not affiliated with @tetsuoai, @a_g_e_n_c, or Elon Musk.
